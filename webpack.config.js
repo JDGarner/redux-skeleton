@@ -4,7 +4,8 @@ var webpack = require('webpack');
 var config = {
   devtool: 'eval-source-map',
   entry: [
-    './src/main.js'
+    './src/main.js',
+    './src/redux.js'
   ],
   output: {
     path: path.join(__dirname, 'dist'),

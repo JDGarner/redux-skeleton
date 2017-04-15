@@ -22,6 +22,9 @@ class App extends React.Component {
           quotes: data,
           currentQuote: _.sample(data)
         });
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
