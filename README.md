@@ -1,7 +1,7 @@
-React Skeleton App
+Redux Skeleton App
 ---
 
-Basic React starter project
+Basic Redux app connected to React with async actions.
 
 
 Setup
@@ -18,12 +18,5 @@ Usage
 Start the development server with this command:
 
 ```
-npm start
-```
-
-Compile
----
-
-```
-npm run build
+npm run dev
 ```
