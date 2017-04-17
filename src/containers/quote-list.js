@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchQuotes } from '../actions'
+import Quote from '../components/quote'
 
 class QuoteList extends React.Component {
 
@@ -9,25 +10,33 @@ class QuoteList extends React.Component {
     this.props.fetchQuotes()
   }
 
-  renderQuoteList() {
-    return this.props.quotes.quotes.map((quote, key) => {
+  renderQuoteList(quotes) {
+    return quotes.map((quote, key) => {
       return (
-        <div key={key}>{quote.content}</div>
+        <Quote key={key} quote={quote} />
       )
     })
   }
 
   render() {
-    if (this.props.quotes) {
+    let quotesList = this.props.quotes.quotes
+
+    if (quotesList && quotesList.length > 0) {
       return (
-        <div>
-          {this.renderQuoteList()}
+        <div className="quote-list">
+          {this.renderQuoteList(quotesList)}
         </div>
       )
-    } else {
+    } else if (this.props.quotes.loadingQuotes) {
       return (
         <div>Waiting for quotes</div>
       )
+    } else if (this.props.quotes.error) {
+      return (
+        <div>Error fetching quotes: {this.props.quotes.error.message}</div>
+      )
+    } else {
+      return null
     }
   }
 }

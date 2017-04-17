@@ -1,3 +1,4 @@
+import ActionTypes from '../constants/action-types'
 import { sample } from 'lodash'
 
 const initialState = {
@@ -9,25 +10,25 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch(action.type) {
-    case "FETCH_QUOTES_REQUEST":
+    case ActionTypes.FETCH_QUOTES_REQUEST:
       return {
         ...state,
         loadingQuotes: true,
       }
-    case "FETCH_QUOTES_SUCCESS":
+    case ActionTypes.FETCH_QUOTES_SUCCESS:
       return {
         ...state,
         loadingQuotes: false,
         quotes: action.payload,
         currentQuote: sample(action.payload)
       }
-    case "FETCH_QUOTES_FAILURE":
+    case ActionTypes.FETCH_QUOTES_FAILURE:
       return {
         ...state,
         loadingQuotes: false,
         error: action.payload
       }
-    case "RESET_QUOTES":
+    case ActionTypes.RESET_QUOTES:
       return initialState;
     default:
       return state;
